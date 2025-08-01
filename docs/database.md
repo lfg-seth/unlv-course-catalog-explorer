@@ -71,7 +71,7 @@ I updated the `schema.prisma` file to match the course data model:
 ```prisma
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_URL")
 }
 
 generator client {
@@ -79,17 +79,23 @@ generator client {
 }
 
 model Course {
-  id                 Int    @id @default(autoincrement())
-  course_id          String
-  course_number      String
-  course_subject     String
-  title              String
-  description        String
-  enrollment_info    String
-  credit_min         Int
-  credit_max         Int
-  prerequisites      String[]
-  // Additional fields added as needed
+  id                     Int      @id @default(autoincrement())
+  course_id              String
+  course_number          String
+  course_subject         String
+  title                  String
+  description            String
+  enrollment_information String
+  credit_min             Int
+  credit_max             Int
+  prerequisites          String[] // e.g. ["CS 135", "MATH 181"]
+  career                 String
+  grading_basis          String
+  course_components      String
+  campus                 String
+  academic_group         String
+  academic_organization  String
+  raw                    String    // raw HTML/text dump of the source for debugging
 }
 ```
 
